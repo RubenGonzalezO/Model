@@ -2,34 +2,39 @@
 <html lang="es">
   <head>
     <meta charset="UTF-8" />
-    <title>Conejo 3D</title>
+    <title>Plato de Comida AR</title>
     <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
     <style>
       body {
         margin: 0;
-        background: #000;
+        background-color: #121212;
         display: flex;
-        justify-content: center;
+        flex-direction: column;
         align-items: center;
+        justify-content: center;
         height: 100vh;
+        color: white;
+        font-family: Arial, sans-serif;
       }
       model-viewer {
-        width: 100%;
-        height: 100%;
+        width: 90vw;
+        height: 90vh;
         max-width: 600px;
+        max-height: 600px;
       }
     </style>
   </head>
   <body>
-    <model-viewer 
+    <h1>Visualiza el plato en tu espacio</h1>
+    <model-viewer
       src="Conejo.glb"
-      alt="Modelo 3D de un plato de conejo"
+      alt="Plato de comida 3D"
+      ar
+      ar-modes="scene-viewer webxr quick-look"
+      environment-image="neutral"
       auto-rotate
       camera-controls
-      ar
-      ar-modes="scene-viewer quick-look webxr"
-      shadow-intensity="1"
-      exposure="1.2">
+    >
     </model-viewer>
   </body>
 </html>
