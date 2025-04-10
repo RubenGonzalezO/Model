@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Conejo 3D</title>
+    <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+    <style>
+      body {
+        margin: 0;
+        background: #000;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+      }
+      model-viewer {
+        width: 100%;
+        height: 100%;
+        max-width: 600px;
+      }
+    </style>
+  </head>
+  <body>
+    <model-viewer 
+      src="Conejo.glb"
+      alt="Modelo 3D de un plato de conejo"
+      auto-rotate
+      camera-controls
+      ar
+      ar-modes="scene-viewer quick-look webxr"
+      shadow-intensity="1"
+      exposure="1.2">
+    </model-viewer>
+  </body>
+</html>
