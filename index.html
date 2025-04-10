@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Modelo</title>
+  <title>Plato 3D - Adaptativo</title>
   <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
   <style>
     body {
@@ -46,7 +46,6 @@
     auto-rotate
     placement="floor"
     ar-placement="tap"
-    scale="0.5 0.5 0.5"
     alt="Plato 3D">
   </model-viewer>
 
@@ -56,7 +55,7 @@
     const viewer = document.getElementById('viewer');
     const button = document.getElementById('arButton');
 
-    // Detectar si el dispositivo es compatible con AR
+    // Función para detectar si el dispositivo es compatible con AR
     const isARSupported = () => {
       const ua = navigator.userAgent;
       const isAndroid = ua.includes('Android');
@@ -65,8 +64,12 @@
     };
 
     if (isARSupported()) {
+      // Compatible con AR
+      viewer.setAttribute("scale", "0.5 0.5 0.5");
       button.onclick = () => viewer.activateAR();
     } else {
+      // No compatible con AR → agrandar el modelo
+      viewer.setAttribute("scale", "1 1 1");
       button.textContent = 'Ver en 3D';
       button.onclick = () => {
         viewer.scrollIntoView({ behavior: 'smooth' });
