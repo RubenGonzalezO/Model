@@ -17,14 +17,14 @@
 
     model-viewer {
       width: 100%;
-      max-width: 500px;
+      max-width: 600px;
       height: 400px;
       margin: 20px 0;
     }
 
     .large-viewer {
-      max-width: 90vw !important;
-      height: 70vh !important;
+      max-width: 95vw !important;
+      height: 80vh !important;
     }
 
     button {
@@ -63,23 +63,20 @@
     const viewer = document.getElementById('viewer');
     const button = document.getElementById('arButton');
 
-    // Función para detectar si el dispositivo es compatible con AR
     const isARSupported = () => {
-      const ua = navigator.userAgent;
-      const isAndroid = ua.includes('Android');
-      const isIOS = /iPhone|iPad|iPod/.test(ua);
-      return isAndroid || isIOS;
+      const ua = navigator.userAgent.toLowerCase();
+      return (ua.includes('android') || ua.includes('iphone') || ua.includes('ipad'));
     };
 
     if (isARSupported()) {
-      // Compatible con AR
-      viewer.setAttribute("scale", "0.5 0.5 0.5");
+      // Dispositivo compatible con AR: reduce escala para que no se vea tan grande
+      viewer.setAttribute("scale", "0.4 0.4 0.4");
       button.onclick = () => viewer.activateAR();
     } else {
-      // No compatible con AR → agrandar el visor y el modelo
-      viewer.setAttribute("scale", "1 1 1");
+      // No compatible con AR: ampliar visualizador y escala del modelo
       viewer.classList.add("large-viewer");
-      button.textContent = 'Ver en 3D';
+      viewer.setAttribute("scale", "1.5 1.5 1.5");
+      button.textContent = "Ver en 3D";
       button.onclick = () => {
         viewer.scrollIntoView({ behavior: 'smooth' });
       };
