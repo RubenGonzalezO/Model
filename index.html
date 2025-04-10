@@ -17,17 +17,17 @@
 
     h1 {
       margin-top: 20px;
-      font-size: 52px; /* Reducción desde 260px (-600%) */
+      font-size: 260px; /* Aumento del 1200% desde ~20px */
       text-align: center;
     }
 
     model-viewer {
       width: 100%;
-      max-width: 2200px;  /* Se mantiene grande */
-      height: 1800px;
+      max-width: 2200px;  /* Área de visualización aumentada */
+      height: 1800px;     /* Más alto para vista no compatible */
       background-color: transparent;
       margin-top: 20px;
-      --ar-button-scale: 2;
+      --ar-button-scale: 12;
     }
 
     .large-viewer {
@@ -37,8 +37,8 @@
 
     button {
       margin: 30px;
-      padding: 24px 48px; /* Reducción desde 100px 200px */
-      font-size: 48px;    /* Reducción desde 208px */
+      padding: 100px 200px; /* Botón aumentado */
+      font-size: 208px;     /* Aumento 1200% desde 16px */
       background-color: #1e88e5;
       color: white;
       border: none;
@@ -52,7 +52,7 @@
 
     model-viewer::part(default-ar-button),
     model-viewer::part(ar-button) {
-      transform: scale(2); /* Ícono AR reducido desde 12 a 2 */
+      transform: scale(12); /* Ícono AR aumentado 1200% */
     }
   </style>
 </head>
@@ -88,8 +88,10 @@
     };
 
     if (isARSupported()) {
+      // Compatible con AR
       button.onclick = () => viewer.activateAR();
     } else {
+      // No compatible con AR
       viewer.classList.add('large-viewer');
       button.textContent = "Ver en 3D";
       button.onclick = () => viewer.scrollIntoView({ behavior: 'smooth' });
