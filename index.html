@@ -14,12 +14,19 @@
       padding: 20px;
       background: #f2f2f2;
     }
+
     model-viewer {
       width: 100%;
       max-width: 500px;
       height: 400px;
       margin: 20px 0;
     }
+
+    .large-viewer {
+      max-width: 90vw !important;
+      height: 70vh !important;
+    }
+
     button {
       padding: 10px 20px;
       font-size: 16px;
@@ -29,6 +36,7 @@
       border-radius: 6px;
       cursor: pointer;
     }
+
     button:hover {
       background: #1976d2;
     }
@@ -68,8 +76,9 @@
       viewer.setAttribute("scale", "0.5 0.5 0.5");
       button.onclick = () => viewer.activateAR();
     } else {
-      // No compatible con AR → agrandar el modelo
+      // No compatible con AR → agrandar el visor y el modelo
       viewer.setAttribute("scale", "1 1 1");
+      viewer.classList.add("large-viewer");
       button.textContent = 'Ver en 3D';
       button.onclick = () => {
         viewer.scrollIntoView({ behavior: 'smooth' });
