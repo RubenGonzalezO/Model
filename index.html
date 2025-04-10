@@ -2,24 +2,31 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Plato 3D - Adaptativo</title>
+  <title>Explora el plato en 3D</title>
   <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
   <style>
     body {
+      margin: 0;
+      padding: 0;
       font-family: sans-serif;
+      background-color: #ffffff;
       display: flex;
       flex-direction: column;
       align-items: center;
-      margin: 0;
-      padding: 20px;
-      background: #f2f2f2;
+    }
+
+    h1 {
+      margin-top: 20px;
+      font-size: 20px;
+      text-align: center;
     }
 
     model-viewer {
       width: 100%;
-      max-width: 600px;
+      max-width: 500px;
       height: 400px;
-      margin: 20px 0;
+      background-color: transparent;
+      margin-top: 20px;
     }
 
     .large-viewer {
@@ -28,17 +35,18 @@
     }
 
     button {
+      margin: 20px;
       padding: 10px 20px;
       font-size: 16px;
-      border: none;
-      background: #2196f3;
+      background-color: #1e88e5;
       color: white;
-      border-radius: 6px;
+      border: none;
+      border-radius: 5px;
       cursor: pointer;
     }
 
     button:hover {
-      background: #1976d2;
+      background-color: #1565c0;
     }
   </style>
 </head>
@@ -48,38 +56,39 @@
 
   <model-viewer id="viewer"
     src="Conejo.glb"
-    ar
-    ar-modes="scene-viewer webxr quick-look"
+    alt="Modelo 3D del plato"
     camera-controls
     auto-rotate
+    ar
+    ar-modes="scene-viewer webxr quick-look"
+    ar-placement="floor"
     placement="floor"
-    ar-placement="tap"
-    alt="Plato 3D">
+    disable-zoom
+    disable-pan
+    shadow-intensity="1"
+    environment-image="neutral"
+    exposure="1">
   </model-viewer>
 
-  <button id="arButton">Ver en tu espacio</button>
+  <button id="actionButton">Ver en tu espacio</button>
 
   <script>
     const viewer = document.getElementById('viewer');
-    const button = document.getElementById('arButton');
+    const button = document.getElementById('actionButton');
 
     const isARSupported = () => {
       const ua = navigator.userAgent.toLowerCase();
-      return (ua.includes('android') || ua.includes('iphone') || ua.includes('ipad'));
+      return /android|iphone|ipad/.test(ua);
     };
 
     if (isARSupported()) {
-      // Dispositivo compatible con AR: reduce escala para que no se vea tan grande
-      viewer.setAttribute("scale", "1.5 1.5 1.5");
+      // Compatible con AR: no modificar escala
       button.onclick = () => viewer.activateAR();
     } else {
-      // No compatible con AR: ampliar visualizador y escala del modelo
-      viewer.classList.add("large-viewer");
-      viewer.setAttribute("scale", "0.4 0.4 0.4");
+      // No compatible con AR: agrandar el visor
+      viewer.classList.add('large-viewer');
       button.textContent = "Ver en 3D";
-      button.onclick = () => {
-        viewer.scrollIntoView({ behavior: 'smooth' });
-      };
+      button.onclick = () => viewer.scrollIntoView({ behavior: 'smooth' });
     }
   </script>
 
