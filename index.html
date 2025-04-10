@@ -17,32 +17,32 @@
 
     h1 {
       margin-top: 20px;
-      font-size: 140px; /* Aumento de 600% (20px base) */
+      font-size: 40px; /* Antes 20px, ahora +200% */
       text-align: center;
     }
 
     model-viewer {
       width: 100%;
-      max-width: 1600px; /* Aumentado para vista compatible */
-      height: 1200px;    /* Aumentado para vista compatible */
+      max-width: 800px; /* Aumentado */
+      height: 600px;    /* Aumentado */
       background-color: transparent;
       margin-top: 20px;
-      --ar-button-scale: 6;
+      --ar-button-scale: 2;
     }
 
     .large-viewer {
       max-width: 95vw !important;
-      height: 90vh !important;
+      height: 85vh !important;
     }
 
     button {
       margin: 20px;
-      padding: 60px 120px; /* Aumentado */
-      font-size: 112px;    /* Aumento de 600% (16px base) */
+      padding: 20px 40px; /* Aumentado */
+      font-size: 32px;    /* Antes 16px → +200% */
       background-color: #1e88e5;
       color: white;
       border: none;
-      border-radius: 20px;
+      border-radius: 10px;
       cursor: pointer;
     }
 
@@ -52,7 +52,11 @@
 
     model-viewer::part(default-ar-button),
     model-viewer::part(ar-button) {
-      transform: scale(6); /* Cubo AR aumentado 600% */
+      transform: scale(2); /* Cubo AR aumentado 200% */
+    }
+
+    model-viewer::part(camera-controls) {
+      transform: scale(2);
     }
   </style>
 </head>
